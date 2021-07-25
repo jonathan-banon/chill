@@ -28,6 +28,7 @@ class FilmFixtures extends Fixture
         $film->setLink('https://www.allocine.fr/film/fichefilm_gen_cfilm=178014.html');
         $film->setIsAvailable(false);
         $releaseDate->setDate(2020, 12, 16);
+        $film->setReleaseDate($releaseDate);
         $film->setCategory($this->getReference('category_4'));
         $manager->persist($film);
 

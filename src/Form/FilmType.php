@@ -17,7 +17,7 @@ class FilmType extends AbstractType
             ->add('image')
             ->add('link')
             ->add('releaseDate')
-            ->add('category')
+            ->add('category', null, ['choice_label' => 'name'])
         ;
     }
 
