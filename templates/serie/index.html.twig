@@ -3,7 +3,7 @@
 {% block title %}Game index{% endblock %}
 
 {% block body %}
-    <h1>Jeux vidéo</h1>
+    <h1>Série</h1>
     <div class="d-flex flex-row flex-wrap justify-content-around">
         {% for serie in series %}
             <div class="card-contain d-flex flex-column">
@@ -33,9 +33,9 @@
             </div>
         {% endfor %}
     </div>
-    <div class="d-flex justify-content-end mt-5">
+    <div class="d-flex justify-content-start mt-5 mb-5 ml-5">
         <a href="{{ path('serie_new') }}">
-            <button class="btn btn-primary">Ajouter un jeux</button>
+            <button class="btn btn-primary">Ajouter une série</button>
         </a>
     </div>
 {% endblock %}

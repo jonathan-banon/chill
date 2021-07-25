@@ -1,13 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Serie{% endblock %}
+{% block title %}Edit Film{% endblock %}
 
 {% block body %}
-    <h1>Edit Serie</h1>
-
-    {{ include('serie/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('serie_index') }}">back to list</a>
-
-    {{ include('serie/_delete_form.html.twig') }}
+    <h1>Modification Série</h1>
+    <div class="container">
+        <div class="d-flex justify-content-around">
+            <div class="row-1">
+                {{ include('serie/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+            </div>
+            <div>
+                <div class="card-contain d-flex flex-column">
+                    <div class="card-img d-flex justify-content-center">
+                        <img src="/build/{{ serie.image }}" class="img-fluid rounded" alt="img-jeux-vidéo">
+                    </div>
+                    <div class="card-text d-flex flex-column justify-content-around h-100">
+                        <div>
+                            <h2 class="text-center">{{ serie.name }}</h2>
+                            <p>Catégorie : {{ serie.category.getName }}</p>
+                            {% if serie.isAvailable == false %}
+                                <p>Sortie prévue le
+                                    <strong>{{ serie.releaseDate|date('j F Y') }}</strong>
+                                </p>
+                            {% endif %}
+                            <a href="{{ serie.link }}">Plus d'information</a>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <a href="{{ path('serie_delete', {id: serie.id}) }}">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <a href="{{ path('serie_index') }}">
+            <button class="btn btn-primary">
+                Retour à la liste
+            </button>
+        </a>
+    </div>
 {% endblock %}

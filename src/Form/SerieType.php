@@ -12,12 +12,12 @@ class SerieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('isAvailable')
             ->add('image')
-            ->add('link')
-            ->add('releaseDate')
+            ->add('name')
             ->add('category', null, ['choice_label' => 'name'])
+            ->add('isAvailable')
+            ->add('releaseDate')
+            ->add('link')
         ;
     }
 
