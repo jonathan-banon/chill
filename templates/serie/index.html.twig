@@ -1,43 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Serie index{% endblock %}
+{% block title %}Game index{% endblock %}
 
 {% block body %}
-    <h1>Serie index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>IsAvailable</th>
-                <th>Image</th>
-                <th>Link</th>
-                <th>ReleaseDate</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <h1>Jeux vidéo</h1>
+    <div class="d-flex flex-row flex-wrap justify-content-around">
         {% for serie in series %}
-            <tr>
-                <td>{{ serie.id }}</td>
-                <td>{{ serie.name }}</td>
-                <td>{{ serie.isAvailable ? 'Yes' : 'No' }}</td>
-                <td>{{ serie.image }}</td>
-                <td>{{ serie.link }}</td>
-                <td>{{ serie.releaseDate ? serie.releaseDate|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('serie_show', {'id': serie.id}) }}">show</a>
-                    <a href="{{ path('serie_edit', {'id': serie.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
+            <div class="card-contain d-flex flex-column">
+                <div class="card-img d-flex justify-content-center">
+                    <img src="/build/{{ serie.image }}"  class="img-fluid rounded" alt="img-jeux-vidéo">
+                </div>
+                <div class="card-text d-flex flex-column justify-content-around h-100">
+                    <div>
+                        <h2 class="text-center">{{ serie.name }}</h2>
+                        <p>Catégorie : {{ serie.category.getName }}</p>
+                        {% if serie.isAvailable == false %}
+                            <p>Sortie prévue le
+                                <strong>{{ serie.releaseDate|date('j F Y') }}</strong>
+                            </p>
+                        {% endif %}
+                        <a href="{{ serie.link }}">Plus d'information</a>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="{{ path('serie_edit', {id: serie.id}) }}">
+                            <button class="btn btn-primary">Modifier</button>
+                        </a>
+                        <a href="{{ path('serie_delete', {id: serie.id}) }}">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('serie_new') }}">Create new</a>
+    </div>
+    <div class="d-flex justify-content-end mt-5">
+        <a href="{{ path('serie_new') }}">
+            <button class="btn btn-primary">Ajouter un jeux</button>
+        </a>
+    </div>
 {% endblock %}

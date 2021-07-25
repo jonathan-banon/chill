@@ -1,43 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Film index{% endblock %}
+{% block title %}Game index{% endblock %}
 
 {% block body %}
-    <h1>Film index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>IsAvailable</th>
-                <th>Image</th>
-                <th>Link</th>
-                <th>ReleaseDate</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <h1>Jeux vidéo</h1>
+    <div class="d-flex flex-row flex-wrap justify-content-around">
         {% for film in films %}
-            <tr>
-                <td>{{ film.id }}</td>
-                <td>{{ film.name }}</td>
-                <td>{{ film.isAvailable ? 'Yes' : 'No' }}</td>
-                <td>{{ film.image }}</td>
-                <td>{{ film.link }}</td>
-                <td>{{ film.releaseDate ? film.releaseDate|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('film_show', {'id': film.id}) }}">show</a>
-                    <a href="{{ path('film_edit', {'id': film.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
+            <div class="card-contain d-flex flex-column">
+                <div class="card-img d-flex justify-content-center">
+                    <img src="/build/{{ film.image }}"  class="img-fluid rounded" alt="img-jeux-vidéo">
+                </div>
+                <div class="card-text d-flex flex-column justify-content-around h-100">
+                    <div>
+                        <h2 class="text-center">{{ film.name }}</h2>
+                        <p>Catégorie : {{ film.category.getName }}</p>
+                        {% if film.isAvailable == false %}
+                            <p>Sortie prévue le
+                                <strong>{{ film.releaseDate|date('j F Y') }}</strong>
+                            </p>
+                        {% endif %}
+                        <a href="{{ film.link }}">Plus d'information</a>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="{{ path('film_edit', {id: film.id}) }}">
+                            <button class="btn btn-primary">Modifier</button>
+                        </a>
+                        <a href="{{ path('film_delete', {id: film.id}) }}">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('film_new') }}">Create new</a>
+    </div>
+    <div class="d-flex justify-content-end mt-5">
+        <a href="{{ path('film_new') }}">
+            <button class="btn btn-primary">Ajouter un jeux</button>
+        </a>
+    </div>
 {% endblock %}

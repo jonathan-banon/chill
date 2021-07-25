@@ -4,6 +4,39 @@
 
 {% block body %}
     <h1>Jeux vidéo</h1>
-
-
+    <div class="d-flex flex-row flex-wrap justify-content-around">
+        {% for game in games %}
+            <div class="card-contain d-flex flex-column">
+                <div class="card-img d-flex justify-content-center">
+                    <img src="/build/{{ game.image }}"  class="img-fluid rounded" alt="img-jeux-vidéo">
+                </div>
+                <div class="card-text d-flex flex-column justify-content-around h-100">
+                    <div>
+                        <h2 class="text-center">{{ game.name }}</h2>
+                        <p>Catégorie : {{ game.category.getName }}</p>
+                        <p>Plateform : {{ game.platform.getName }}</p>
+                        {% if game.isAvailable == false %}
+                            <p>Sortie prévue le
+                                <strong>{{ game.releaseDate|date('j F Y') }}</strong>
+                            </p>
+                        {% endif %}
+                        <a href="{{ game.link }}">Plus d'information</a>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="{{ path('game_edit', {id: game.id}) }}">
+                            <button class="btn btn-primary">Modifier</button>
+                        </a>
+                        <a href="{{ path('game_delete', {id: game.id}) }}">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="d-flex justify-content-end mt-5">
+        <a href="{{ path('game_new') }}">
+            <button class="btn btn-primary">Ajouter un jeux</button>
+        </a>
+    </div>
 {% endblock %}

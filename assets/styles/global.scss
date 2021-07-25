@@ -1,3 +1,16 @@
 body{
   background-color: var(--secondary);
+  a i {
+    color: #011f29;
+  }
+  .card-contain{
+    height: 500px;
+    width: 230px;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: white;
+    .card-img{
+      height: 180px;
+    }
+  }
 }
