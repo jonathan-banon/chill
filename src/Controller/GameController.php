@@ -49,16 +49,6 @@ class GameController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="game_show", methods={"GET"})
-     */
-    public function show(Game $game): Response
-    {
-        return $this->render('game/show.html.twig', [
-            'game' => $game,
-        ]);
-    }
-
-    /**
      * @Route("/{id}/edit", name="game_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Game $game): Response

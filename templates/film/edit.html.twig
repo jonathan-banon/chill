@@ -3,13 +3,14 @@
 {% block title %}Edit Film{% endblock %}
 
 {% block body %}
-    <h1>Modification Film</h1>
-    <div class="container">
+
+    <div class="container text-light">
+        <h1>Modification Film</h1>
         <div class="d-flex justify-content-around">
             <div class="row-1">
                 {{ include('film/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
             </div>
-            <div>
+            <div class="text-dark">
                 <div class="card-contain d-flex flex-column">
                     <div class="card-img d-flex justify-content-center">
                         <img src="/build/{{ film.image }}" class="img-fluid rounded" alt="img-jeux-vidéo">

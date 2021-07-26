@@ -49,16 +49,6 @@ class FilmController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="film_show", methods={"GET"})
-     */
-    public function show(Film $film): Response
-    {
-        return $this->render('film/show.html.twig', [
-            'film' => $film,
-        ]);
-    }
-
-    /**
      * @Route("/{id}/edit", name="film_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Film $film): Response
@@ -89,6 +79,6 @@ class FilmController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('film_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('film_index');
     }
 }

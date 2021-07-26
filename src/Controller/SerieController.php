@@ -49,16 +49,6 @@ class SerieController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="serie_show", methods={"GET"})
-     */
-    public function show(Serie $serie): Response
-    {
-        return $this->render('serie/show.html.twig', [
-            'serie' => $serie,
-        ]);
-    }
-
-    /**
      * @Route("/{id}/edit", name="serie_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Serie $serie): Response

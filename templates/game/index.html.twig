@@ -3,7 +3,6 @@
 {% block title %}Game index{% endblock %}
 
 {% block body %}
-    <h1>Jeux vidéo</h1>
     <div class="d-flex flex-row flex-wrap justify-content-around">
         {% for game in games %}
             <div class="card-contain d-flex flex-column">
@@ -26,9 +25,12 @@
                         <a href="{{ path('game_edit', {id: game.id}) }}">
                             <button class="btn btn-primary">Modifier</button>
                         </a>
-                        <a href="{{ path('game_delete', {id: game.id}) }}">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
+                        <form method="post" action="{{ path('game_delete', {id: game.id}) }}" onsubmit="return confirm('Confirmez la suppression');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ game.id) }}">
+                            <button class="btn">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

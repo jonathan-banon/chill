@@ -3,7 +3,6 @@
 {% block title %}Game index{% endblock %}
 
 {% block body %}
-    <h1>Série</h1>
     <div class="d-flex flex-row flex-wrap justify-content-around">
         {% for serie in series %}
             <div class="card-contain d-flex flex-column">
@@ -25,9 +24,12 @@
                         <a href="{{ path('serie_edit', {id: serie.id}) }}">
                             <button class="btn btn-primary">Modifier</button>
                         </a>
-                        <a href="{{ path('serie_delete', {id: serie.id}) }}">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
+                        <form method="post" action="{{ path('serie_delete', {id: serie.id}) }}" onsubmit="return confirm('Confirmez la suppression');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ serie.id) }}">
+                            <button class="btn">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
